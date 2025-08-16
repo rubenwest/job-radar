@@ -6,9 +6,11 @@ import Link from "next/link";
 
 type Props = {
   job: Job;
+  isFavorite: boolean;
+  onToggleFavorite?: () => void;
 };
 
-export default function JobCard({ job }: Props) {
+export default function JobCard({ job, isFavorite, onToggleFavorite }: Props) {
   const tags = Array.from(new Set(job.tags));
 
   return (
@@ -44,7 +46,12 @@ export default function JobCard({ job }: Props) {
             ))}
           </div>
         </div>
+        <div>
+          <button onClick={onToggleFavorite}>{isFavorite ? "💙" : "🤍"}</button>
+        </div>
       </div>
+
+      <div className=""></div>
 
       <div className="mt-4">
         <Link
